@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>pallas-gpu-msm — GPU-Accelerated MSM for the Pallas Curve</title>
+<title>HanFei 韩非 — GPU-Accelerated MSM for the Pallas Curve</title>
 <style>
   :root {
     --bg: #0d1117; --surface: #161b22; --border: #30363d;
@@ -67,8 +67,9 @@
 </head>
 <body>
 
-<h1>pallas-gpu-msm</h1>
-<p class="subtitle">The first GPU-accelerated Multi-Scalar Multiplication for the Pallas elliptic curve.</p>
+<h1>HanFei 韩非</h1>
+<p class="subtitle">The first — and currently only — GPU-accelerated MSM for the Pallas elliptic curve.</p>
+<p style="color:var(--muted);font-style:italic;margin-bottom:1.5rem">"法不阿贵，绳不挠曲" — The law does not favor the noble; the plumb line does not bend for the crooked.</p>
 
 <span class="badge badge-green">Pallas Curve</span>
 <span class="badge badge-blue">CUDA GPU</span>
@@ -110,7 +111,7 @@
   &nbsp;&nbsp;&darr;<br>
   Forked halo2_proofs (MSM patched)<br>
   &nbsp;&nbsp;&darr;<br>
-  <span class="highlight">pallas-gpu-msm &larr; this crate</span><br>
+  <span class="highlight">HanFei &larr; this crate</span><br>
   &nbsp;&nbsp;&darr;<br>
   CUDA Kernels (prebuilt, sm_86 / sm_89 / sm_90)
 </div>
@@ -128,7 +129,7 @@
     <tr><td><a href="https://github.com/spaceandtimelabs/blitzar">Blitzar</a></td><td>Yes</td><td>Yes</td><td style="color:var(--red)">No</td></tr>
     <tr><td><a href="https://github.com/filecoin-project/ec-gpu">ec-gpu</a></td><td>Yes</td><td>Yes</td><td style="color:var(--red)">No</td></tr>
     <tr><td><a href="https://github.com/privacy-scaling-explorations/halo2curves">halo2curves</a></td><td>&mdash;</td><td>&mdash;</td><td>CPU only</td></tr>
-    <tr><td><strong>pallas-gpu-msm</strong></td><td>&mdash;</td><td>&mdash;</td><td style="color:var(--green);font-weight:700">Yes</td></tr>
+    <tr><td><strong>HanFei</strong></td><td>&mdash;</td><td>&mdash;</td><td style="color:var(--green);font-weight:700">Yes</td></tr>
   </tbody>
 </table>
 
@@ -189,7 +190,7 @@
 <h2>Quick Start</h2>
 
 <pre><code>[dependencies]
-pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/pallas-gpu-msm" }</code></pre>
+pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/HanFei" }</code></pre>
 
 <pre><code>use pallas_gpu_msm::{gpu_best_multiexp, is_gpu_available};
 
@@ -268,17 +269,17 @@ pub fn gpu_best_multiexp(coeffs: &amp;[Scalar], bases: &amp;[Affine]) -> Point;<
 }
 
 @software{pallas_gpu_msm,
-  title={pallas-gpu-msm: GPU-Accelerated MSM for the Pallas Curve},
+  title={HanFei: GPU-Accelerated MSM for the Pallas Curve},
   author={Zhaohui Wang},
   year={2026},
-  url={https://github.com/GeoffreyWang1117/pallas-gpu-msm}
+  url={https://github.com/GeoffreyWang1117/HanFei}
 }</code></pre>
 
 <!-- ======================== FOOTER ======================== -->
 <footer>
   <p><strong>Contributors:</strong> Zhaohui (Geoffrey) Wang (design, development, paper) &middot; Claude Opus, Anthropic (research, experiments, tuning)</p>
-  <p><strong>License:</strong> <a href="https://github.com/GeoffreyWang1117/pallas-gpu-msm/blob/main/LICENSE">Apache 2.0</a> &middot; CUDA kernels distributed as prebuilt binaries only.</p>
-  <p><strong>Contact:</strong> <a href="mailto:zhaohui.geoffrey.wang@gmail.com">zhaohui.geoffrey.wang@gmail.com</a> &middot; <a href="https://github.com/GeoffreyWang1117/pallas-gpu-msm">GitHub</a> &middot; Part of <a href="https://github.com/GeoffreyWang1117/nanoZkinference">ChainProve / nanoZkinference</a></p>
+  <p><strong>License:</strong> <a href="https://github.com/GeoffreyWang1117/HanFei/blob/main/LICENSE">Apache 2.0</a> &middot; CUDA kernels distributed as prebuilt binaries only.</p>
+  <p><strong>Contact:</strong> <a href="mailto:zhaohui.geoffrey.wang@gmail.com">zhaohui.geoffrey.wang@gmail.com</a> &middot; <a href="https://github.com/GeoffreyWang1117/HanFei">GitHub</a> &middot; Part of <a href="https://github.com/GeoffreyWang1117/nanoZkinference">ChainProve / nanoZkinference</a></p>
 </footer>
 
 </body>

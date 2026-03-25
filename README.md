@@ -1,10 +1,30 @@
-# pallas-gpu-msm
+<div align="center">
+
+# HanFei 韩非
 
 **The first — and currently only — GPU-accelerated Multi-Scalar Multiplication (MSM) for the Pallas elliptic curve.**
 
-<p align="center">
-  <img src="docs/benchmark.svg" alt="GPU vs CPU benchmark" width="720">
-</p>
+**首个 Pallas 椭圆曲线 GPU 加速多标量乘法 (MSM) 实现。目前唯一。**
+
+<br>
+
+> **法不阿贵，绳不挠曲。**
+>
+> *The law does not favor the noble; the plumb line does not bend for the crooked.*
+>
+> — 韩非子《韩非子·有度》
+
+<br>
+
+<img src="docs/benchmark.svg" alt="GPU vs CPU benchmark" width="720">
+
+</div>
+
+---
+
+[English](#english) | [中文](#中文)
+
+<a name="english"></a>
 
 ## What is this?
 
@@ -14,45 +34,15 @@
 result = s_1 * G_1 + s_2 * G_2 + ... + s_n * G_n
 ```
 
-where `s_i` are scalars and `G_i` are elliptic curve points. In Halo2's IPA proving scheme, MSM accounts for **60-70% of total proving time**. For an attention layer with d=256, this means MSM alone takes over 100 seconds on CPU.
+In Halo2's IPA proving scheme, MSM accounts for **60-70% of total proving time**. For a transformer attention layer at d=256, MSM alone takes over 100 seconds on CPU.
 
-**pallas-gpu-msm** accelerates this operation on NVIDIA GPUs for the **Pallas curve** -- one half of the [Pasta curve cycle](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) used by [Halo2](https://zcash.github.io/halo2/), [Zcash](https://z.cash/), and other recursive proof systems.
+**HanFei** accelerates this on NVIDIA GPUs for the **Pallas curve** — one half of the [Pasta curve cycle](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) used by [Halo2](https://zcash.github.io/halo2/), [Zcash](https://z.cash/), and other recursive proof systems.
 
-Existing GPU MSM libraries (ICICLE, cuZK, Blitzar) only support BN254 and BLS12-381. **This crate is the first to bring GPU acceleration to Pallas.**
+Just as Han Feizi advocated governance through verifiable rules rather than trust in individuals, zero-knowledge proofs replace trust with mathematical verification. HanFei brings GPU acceleration to this verification — the plumb line does not bend.
 
-## Origin
+## No Existing Alternatives
 
-This crate is the GPU MSM component of [ChainProve (nanoZkinference)](https://github.com/GeoffreyWang1117/nanoZkinference), a system for verifiable transformer inference using zero-knowledge proofs. It sits in the proving pipeline as:
-
-```
-ChainProve Proving Pipeline:
-
-  Python API (nanozk_halo2)
-      ↓
-  Halo2 Backend (Rust/PyO3)
-      ↓
-  Forked halo2_proofs (MSM patched)
-      ↓
-  pallas-gpu-msm  ← this crate
-      ↓
-  CUDA Kernels (prebuilt)
-```
-
-Related paper:
-
-> Zhaohui Wang. *Verifiable Transformer Inference on NanoGPT: A Layerwise zkML Prototype.* arXiv preprint, 2025.
-
-## Features
-
-- **GPU-accelerated MSM** for the Pallas curve on NVIDIA GPUs (Ampere, Ada, Hopper)
-- **Drop-in replacement** for `halo2curves::msm::best_multiexp` -- same types, same API
-- **Automatic fallback** to CPU when no GPU is available or for small inputs (< 8K points)
-- **Prebuilt CUDA kernels** -- no CUDA Toolkit or nvcc required to build
-- **Bit-exact correctness** -- GPU results match CPU across all tested input sizes (k=10..21)
-
-## Landscape: No Existing Alternatives
-
-As of March 2026, **no other library provides GPU-accelerated MSM for the Pallas curve**:
+As of March 2026, **no other library provides GPU MSM for Pallas**:
 
 | Library | BN254 | BLS12-381 | Pallas |
 |---------|-------|-----------|--------|
@@ -61,15 +51,13 @@ As of March 2026, **no other library provides GPU-accelerated MSM for the Pallas
 | [Blitzar](https://github.com/spaceandtimelabs/blitzar) | Yes | Yes | **No** |
 | [ec-gpu](https://github.com/filecoin-project/ec-gpu) | Yes | Yes | **No** |
 | [halo2curves](https://github.com/privacy-scaling-explorations/halo2curves) | — | — | CPU only |
-| **pallas-gpu-msm (this crate)** | — | — | **Yes** |
+| **HanFei** | — | — | **Yes** |
 
-The entire Halo2/Zcash/Pasta ecosystem currently has no GPU MSM option. This crate is the only one.
+The entire Halo2/Zcash/Pasta ecosystem currently has zero GPU MSM options. HanFei is the only one.
 
 ## Performance
 
-### Current Benchmark (v0.1.0)
-
-RTX 3090 (Ampere, 82 SMs) vs Ryzen 9 5950X (32 threads):
+RTX 3090 (Ampere, 82 SMs) vs Ryzen 9 5950X (32 threads), best-of-N runs:
 
 | Input size | GPU (ms) | CPU (ms) | Speedup | Correct |
 |-----------|----------|----------|---------|---------|
@@ -80,32 +68,32 @@ RTX 3090 (Ampere, 82 SMs) vs Ryzen 9 5950X (32 threads):
 | 1M (k=20) | 417.0 | 491.4 | **1.18x** | OK |
 | 2M (k=21) | 900.2 | 933.0 | **1.04x** | OK |
 
-GPU wins at k >= 16 (64K+ points). Peak speedup **1.33x** at k=19. All results **bit-exact** (best-of-N runs).
+GPU wins at k >= 16. Peak speedup **1.33x** at k=19. All results **bit-exact**.
 
-### Progress vs. Early Development
+## Origin
 
-| k | Early prototype | Current v0.1.0 | Improvement |
-|---|----------------|----------------|-------------|
-| 17 | 0.61x (GPU slower) | **1.12x** (GPU wins) | 1.8x |
-| 19 | 0.84x | **1.33x** | 1.6x |
-| 21 | 0.77x | **1.04x** | 1.4x |
+HanFei is the GPU MSM component of [ChainProve (nanoZkinference)](https://github.com/GeoffreyWang1117/nanoZkinference), a system for verifiable transformer inference using zero-knowledge proofs.
 
-### Reproduce
+```
+ChainProve Proving Pipeline:
 
-```bash
-cargo run --release --example full_benchmark
+  Python API (nanozk_halo2)
+      ↓
+  Halo2 Backend (Rust/PyO3)
+      ↓
+  Forked halo2_proofs (MSM patched)
+      ↓
+  HanFei  ← this crate
+      ↓
+  CUDA Kernels (prebuilt)
 ```
 
 ## Quick Start
 
-Add to your `Cargo.toml`:
-
 ```toml
 [dependencies]
-pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/pallas-gpu-msm" }
+pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/HanFei" }
 ```
-
-Use in your code:
 
 ```rust
 use pallas_gpu_msm::{gpu_best_multiexp, is_gpu_available};
@@ -116,108 +104,121 @@ println!("GPU available: {}", is_gpu_available());
 let result = gpu_best_multiexp(&scalars, &bases);
 ```
 
+## Integration Guide: Adding HanFei to Your zkML System
+
+If you have a Halo2-based ZK system (e.g., zkLLM, EZKL, or a custom prover), here is how to integrate HanFei for GPU-accelerated proving.
+
+### Step 1: Fork halo2_proofs and patch the MSM call
+
+In your fork of `halo2_proofs`, locate the MSM call site (typically in `src/poly/commitment.rs` or `src/plonk/prover.rs`):
+
+```rust
+// Before: CPU-only MSM
+let result = best_multiexp(&scalars, &bases);
+```
+
+Replace with HanFei:
+
+```rust
+// After: GPU-accelerated MSM with automatic CPU fallback
+use pallas_gpu_msm::gpu_best_multiexp;
+let result = gpu_best_multiexp(&scalars, &bases);
+```
+
+The function signature is identical — `(&[Scalar], &[Affine]) -> Point` — so no other changes are needed.
+
+### Step 2: Add dependency
+
+In your forked `halo2_proofs/Cargo.toml`:
+
+```toml
+[dependencies]
+pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/HanFei" }
+```
+
+### Step 3: Build and verify
+
+```bash
+# Requires: NVIDIA GPU + libcudart (no nvcc needed)
+cargo test --release
+
+# Verify GPU is detected
+cargo run --release --example basic_msm
+```
+
+### Step 4: Benchmark your proving pipeline
+
+The speedup you observe depends on your circuit's MSM size (k value):
+
+| Circuit type | Typical k | Expected HanFei speedup |
+|-------------|-----------|------------------------|
+| Small MLP (d=64) | 13-14 | ~1x (CPU fallback) |
+| Medium MLP (d=256) | 17 | **1.12x** |
+| Attention (d=128) | 18-19 | **1.30x** |
+| Large attention (d=512) | 20-21 | **1.10-1.18x** |
+
+For end-to-end proving time improvement, multiply by the MSM fraction of your prover (~60-70% for IPA).
+
+### Example: End-to-end GPT-2 layer proving
+
+In ChainProve, a single GPT-2 MLP layer (d=768, k=17) proves in ~6.3s on CPU. With HanFei, the MSM portion (~4.0s) drops to ~3.6s, saving ~0.4s per layer. For a 12-layer model, this adds up to ~5s total savings. As kernel optimizations progress toward v0.2.0 (target 5-10x), the savings will be much larger.
+
+## Features
+
+- **GPU-accelerated MSM** for Pallas on NVIDIA GPUs (Ampere, Ada, Hopper)
+- **Drop-in replacement** for `halo2curves::msm::best_multiexp`
+- **Automatic fallback** to CPU when no GPU or for small inputs (< 8K points)
+- **Prebuilt CUDA kernels** — no nvcc required
+- **Bit-exact correctness** — verified across k=10..21
+
 ## Requirements
 
 - **NVIDIA GPU**: compute capability >= 8.6 (RTX 3090, RTX 4090, A100, H100, etc.)
-- **CUDA Runtime**: `libcudart` must be installed (comes with NVIDIA driver)
+- **CUDA Runtime**: `libcudart` (comes with NVIDIA driver)
 - **Rust**: 1.70+
-- No nvcc or CUDA Toolkit needed -- kernels are prebuilt
 
 ## Supported GPUs
 
-| Architecture | Example GPUs | Prebuilt |
-|-------------|-------------|----------|
+| Architecture | GPUs | Prebuilt |
+|-------------|------|----------|
 | sm_86 (Ampere) | RTX 3090, A6000, A100 | Yes |
 | sm_89 (Ada) | RTX 4090, L40 | Yes |
 | sm_90 (Hopper) | H100, H200 | Yes |
 
-Override auto-detection: `CUDA_ARCH=sm_XX cargo build`
-
 ## API
 
 ```rust
-/// Check if a CUDA GPU is available at runtime (cached after first call).
 pub fn is_gpu_available() -> bool;
-
-/// Compute MSM: result = sum(coeffs[i] * bases[i]).
-/// GPU for inputs >= 8K points, CPU fallback otherwise.
-/// Panics if coeffs.len() != bases.len().
 pub fn gpu_best_multiexp(coeffs: &[Scalar], bases: &[Affine]) -> Point;
 ```
 
-Types `Scalar`, `Affine`, `Point` are re-exported from `halo2curves::pasta::pallas`.
-
-## Running Tests and Benchmarks
+## Tests and Benchmarks
 
 ```bash
-# Unit tests (includes GPU correctness verification)
-cargo test --release
-
-# Quick benchmark (k=10..21, GPU vs CPU, with correctness check)
-cargo run --release --example full_benchmark
-
-# Criterion benchmark (k=14,17,19, statistical analysis)
-cargo bench
+cargo test --release                            # unit tests + GPU correctness
+cargo run --release --example full_benchmark    # quick benchmark (k=10..21)
+cargo run --release --example official_benchmark # JSON output for CI
+cargo bench                                     # Criterion statistical analysis
 ```
 
 ## Development Roadmap
 
-### v0.1.0 (current) -- First GPU MSM for Pallas
-
-- [x] Complete GPU MSM pipeline with bit-exact correctness
-- [x] Rust FFI with automatic CPU fallback
-- [x] GPU surpasses CPU at k >= 15 (up to 1.21x)
-- [x] Prebuilt kernels for Ampere, Ada, Hopper
-- [x] Open-source release
-
-### v0.2.0 (target: 2026 Q2) -- 5-10x speedup
-
-- [ ] Kernel-level parallelism improvements
-- [ ] Better GPU occupancy and memory access patterns
-- [ ] Target: consistent 5x+ over CPU at k=17-21
-
-### v0.3.0 (target: 2026 Q3) -- Production-ready
-
-- [ ] Additional kernel optimizations for throughput
-- [ ] PyO3 Python bindings (`pip install pallas-gpu-msm`)
-- [ ] Multi-GPU support for very large MSMs
-- [ ] Vesta curve support (complete Pasta cycle)
-
-### Long-term
-
-- [ ] Target top-venue publication (TCHES / ASPLOS)
-- [ ] Become the default GPU MSM backend for the Halo2/Pasta ecosystem
-
-## Project Timeline
-
-```
-2025      Paper: "Verifiable Transformer Inference on NanoGPT" (arXiv)
-2026 Q1   v0.1.0: First Pallas GPU MSM, GPU > CPU at large k
-          VerifAI @ ICLR 2026 (accepted), BlockSys 2026 (submitted)
-2026 Q2   v0.2.0: Major kernel improvements, target 5-10x
-          ICICS 2026 submission
-2026 Q3   v0.3.0: Python bindings, multi-GPU, Vesta curve
-          Standalone GPU MSM paper draft
-2026 Q4   Production release, community adoption
-2027      Top-venue submission (TCHES / ASPLOS / CCS)
-```
+- **v0.1.0** (current) — First Pallas GPU MSM. GPU > CPU at k>=16. Bit-exact. Open-source.
+- **v0.2.0** (2026 Q2) — Kernel improvements, target 5-10x over CPU.
+- **v0.3.0** (2026 Q3) — Python bindings, multi-GPU, Vesta curve.
 
 ## Contributors
 
-- **Zhaohui (Geoffrey) Wang** -- Design, development, and paper
-- **Claude Opus (Anthropic)** -- Research assistance, experiments, and performance tuning
+- **Zhaohui (Geoffrey) Wang** — Design, development, and paper
+- **Claude Opus (Anthropic)** — Research assistance, experiments, and performance tuning
 
 ## License
 
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](LICENSE). CUDA kernels distributed as prebuilt binaries only ([NOTICE](NOTICE)).
 
-The CUDA kernels are distributed as prebuilt binaries only. See [NOTICE](NOTICE).
-
-For collaboration or commercial inquiries: **zhaohui.geoffrey.wang@gmail.com**
+Contact: **zhaohui.geoffrey.wang@gmail.com**
 
 ## Citation
-
-This project is part of the ChainProve/nanoZkinference system:
 
 ```bibtex
 @article{nanogpt-zkinference,
@@ -226,13 +227,65 @@ This project is part of the ChainProve/nanoZkinference system:
   journal={arXiv preprint},
   year={2025}
 }
-```
 
-```bibtex
-@software{pallas_gpu_msm,
-  title={pallas-gpu-msm: GPU-Accelerated MSM for the Pallas Curve},
+@software{hanfei_pallas_gpu_msm,
+  title={HanFei: GPU-Accelerated MSM for the Pallas Curve},
   author={Zhaohui Wang},
   year={2026},
-  url={https://github.com/GeoffreyWang1117/pallas-gpu-msm}
+  url={https://github.com/GeoffreyWang1117/HanFei}
 }
 ```
+
+---
+
+<a name="中文"></a>
+
+## 中文简介
+
+### 项目背景
+
+**HanFei（韩非）** 是 Pallas 椭圆曲线上首个也是目前唯一的 GPU 加速多标量乘法 (MSM) 实现。
+
+MSM 是零知识证明系统中最大的计算瓶颈，占 Halo2 IPA 证明时间的 60-70%。现有 GPU MSM 库（ICICLE、cuZK、Blitzar）均只支持 BN254/BLS12-381，**不支持 Pallas**。而 Pallas 是 Halo2、Zcash 等递归证明系统使用的核心曲线。
+
+本项目名取自法家代表人物韩非子。正如韩非子主张以法治国、不以人治，零知识证明用数学验证取代对个人的信任。**法不阿贵，绳不挠曲** —— 密码学验证对所有人一视同仁。
+
+### 性能
+
+RTX 3090 vs Ryzen 9 5950X (32线程)：
+
+| 规模 | GPU | CPU | 加速比 |
+|------|-----|-----|--------|
+| 256K (k=18) | 117.5ms | 152.8ms | **1.30x** |
+| 512K (k=19) | 218.4ms | 289.6ms | **1.33x** |
+| 1M (k=20) | 417.0ms | 491.4ms | **1.18x** |
+
+所有结果与 CPU **逐位精确一致**。
+
+### 来源
+
+本项目提取自 [ChainProve (nanoZkinference)](https://github.com/GeoffreyWang1117/nanoZkinference) —— 一个基于零知识证明的可验证 Transformer 推理系统。
+
+相关论文：Zhaohui Wang, *Verifiable Transformer Inference on NanoGPT: A Layerwise zkML Prototype*, arXiv, 2025.
+
+### 使用
+
+```toml
+[dependencies]
+pallas-gpu-msm = { git = "https://github.com/GeoffreyWang1117/HanFei" }
+```
+
+```rust
+use pallas_gpu_msm::{gpu_best_multiexp, is_gpu_available};
+let result = gpu_best_multiexp(&scalars, &bases); // 自动 GPU/CPU 调度
+```
+
+### 集成到你的 zkML 系统
+
+在你 fork 的 `halo2_proofs` 中，将 `best_multiexp` 替换为 `gpu_best_multiexp` 即可。函数签名完全一致，无需其他修改。详见上方英文 Integration Guide。
+
+### 协议
+
+Apache 2.0。CUDA 内核仅以预编译二进制分发。
+
+联系方式：**zhaohui.geoffrey.wang@gmail.com**
