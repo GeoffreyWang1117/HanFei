@@ -145,12 +145,12 @@
     <tr><th>Input Size</th><th>GPU (ms)</th><th>CPU (ms)</th><th>Speedup</th><th>Correct</th></tr>
   </thead>
   <tbody>
-    <tr><td>64K (k=16)</td><td>44.9</td><td>47.7</td><td class="speedup">1.06x</td><td>OK</td></tr>
-    <tr><td>128K (k=17)</td><td>72.2</td><td>81.3</td><td class="speedup">1.12x</td><td>OK</td></tr>
-    <tr><td>256K (k=18)</td><td>117.5</td><td>152.8</td><td class="speedup">1.30x</td><td>OK</td></tr>
-    <tr><td>512K (k=19)</td><td>218.4</td><td>289.6</td><td class="speedup">1.33x</td><td>OK</td></tr>
-    <tr><td>1M (k=20)</td><td>417.0</td><td>491.4</td><td class="speedup">1.18x</td><td>OK</td></tr>
-    <tr><td>2M (k=21)</td><td>900.2</td><td>933.0</td><td class="speedup">1.04x</td><td>OK</td></tr>
+    <tr><td>64K (k=16)</td><td>35.9</td><td>47.6</td><td class="speedup">1.33x</td><td>OK</td></tr>
+    <tr><td>128K (k=17)</td><td>58.7</td><td>85.1</td><td class="speedup">1.45x</td><td>OK</td></tr>
+    <tr><td>256K (k=18)</td><td>110.7</td><td>154.6</td><td class="speedup">1.40x</td><td>OK</td></tr>
+    <tr><td>512K (k=19)</td><td>175.2</td><td>298.5</td><td class="speedup">1.70x</td><td>OK</td></tr>
+    <tr><td>1M (k=20)</td><td>351.7</td><td>527.7</td><td class="speedup">1.50x</td><td>OK</td></tr>
+    <tr><td>2M (k=21)</td><td>740.1</td><td>975.5</td><td class="speedup">1.32x</td><td>OK</td></tr>
   </tbody>
 </table>
 
@@ -158,9 +158,9 @@
 <table class="progress-compare">
   <thead><tr><th>k</th><th>Early prototype</th><th>v0.1.0</th><th>Improvement</th></tr></thead>
   <tbody>
-    <tr><td>17 (128K)</td><td>0.61x (GPU slower)</td><td>1.12x (GPU wins)</td><td>1.8x</td></tr>
-    <tr><td>19 (512K)</td><td>0.84x</td><td>1.33x</td><td>1.6x</td></tr>
-    <tr><td>21 (2M)</td><td>0.77x</td><td>1.04x</td><td>1.4x</td></tr>
+    <tr><td>17 (128K)</td><td>0.61x (GPU slower)</td><td>1.45x (GPU wins)</td><td>2.4x</td></tr>
+    <tr><td>19 (512K)</td><td>0.84x</td><td>1.70x</td><td>2.0x</td></tr>
+    <tr><td>21 (2M)</td><td>0.77x</td><td>1.32x</td><td>1.7x</td></tr>
   </tbody>
 </table>
 

@@ -61,14 +61,14 @@ RTX 3090 (Ampere, 82 SMs) vs Ryzen 9 5950X (32 threads), best-of-N runs:
 
 | Input size | GPU (ms) | CPU (ms) | Speedup | Correct |
 |-----------|----------|----------|---------|---------|
-| 64K (k=16) | 44.9 | 47.7 | **1.06x** | OK |
-| 128K (k=17) | 72.2 | 81.3 | **1.12x** | OK |
-| 256K (k=18) | 117.5 | 152.8 | **1.30x** | OK |
-| 512K (k=19) | 218.4 | 289.6 | **1.33x** | OK |
-| 1M (k=20) | 417.0 | 491.4 | **1.18x** | OK |
-| 2M (k=21) | 900.2 | 933.0 | **1.04x** | OK |
+| 64K (k=16) | 35.9 | 47.6 | **1.33x** | OK |
+| 128K (k=17) | 58.7 | 85.1 | **1.45x** | OK |
+| 256K (k=18) | 110.7 | 154.6 | **1.40x** | OK |
+| 512K (k=19) | 175.2 | 298.5 | **1.70x** | OK |
+| 1M (k=20) | 351.7 | 527.7 | **1.50x** | OK |
+| 2M (k=21) | 740.1 | 975.5 | **1.32x** | OK |
 
-GPU wins at k >= 16. Peak speedup **1.33x** at k=19. All results **bit-exact**.
+GPU wins at k >= 16. Peak speedup **1.70x** at k=19. All results **bit-exact** (best-of-N runs).
 
 ## Origin
 
@@ -153,15 +153,15 @@ The speedup you observe depends on your circuit's MSM size (k value):
 | Circuit type | Typical k | Expected HanFei speedup |
 |-------------|-----------|------------------------|
 | Small MLP (d=64) | 13-14 | ~1x (CPU fallback) |
-| Medium MLP (d=256) | 17 | **1.12x** |
-| Attention (d=128) | 18-19 | **1.30x** |
-| Large attention (d=512) | 20-21 | **1.10-1.18x** |
+| Medium MLP (d=256) | 17 | **1.45x** |
+| Attention (d=128) | 18-19 | **1.40-1.70x** |
+| Large attention (d=512) | 20-21 | **1.32-1.50x** |
 
 For end-to-end proving time improvement, multiply by the MSM fraction of your prover (~60-70% for IPA).
 
 ### Example: End-to-end GPT-2 layer proving
 
-In ChainProve, a single GPT-2 MLP layer (d=768, k=17) proves in ~6.3s on CPU. With HanFei, the MSM portion (~4.0s) drops to ~3.6s, saving ~0.4s per layer. For a 12-layer model, this adds up to ~5s total savings. As kernel optimizations progress toward v0.2.0 (target 5-10x), the savings will be much larger.
+In ChainProve, a single GPT-2 MLP layer (d=768, k=17) proves in ~6.3s on CPU. With HanFei, the MSM portion (~4.0s) drops to ~2.8s, saving ~1.2s per layer. For a 12-layer model, this adds up to ~15s total savings — reducing full-model proving from 8.6min to ~8.3min on CPU+GPU.
 
 ## Features
 
@@ -256,9 +256,9 @@ RTX 3090 vs Ryzen 9 5950X (32线程)：
 
 | 规模 | GPU | CPU | 加速比 |
 |------|-----|-----|--------|
-| 256K (k=18) | 117.5ms | 152.8ms | **1.30x** |
-| 512K (k=19) | 218.4ms | 289.6ms | **1.33x** |
-| 1M (k=20) | 417.0ms | 491.4ms | **1.18x** |
+| 256K (k=18) | 110.7ms | 154.6ms | **1.40x** |
+| 512K (k=19) | 175.2ms | 298.5ms | **1.70x** |
+| 1M (k=20) | 351.7ms | 527.7ms | **1.50x** |
 
 所有结果与 CPU **逐位精确一致**。
 
