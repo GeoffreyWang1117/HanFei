@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="gpuGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#58a6ff" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="cpuGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b949e" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b949e" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="400" rx="12" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="360" y="35" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="700">pallas-gpu-msm v0.1.0 — GPU vs CPU (RTX 3090 vs Ryzen 5950X 32T)</text>
+  <text x="360" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Best-of-N runs, all results bit-exact. No competing GPU implementation exists for Pallas.</text>
+
+  <!-- Y axis label -->
+  <text x="18" y="220" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,18,220)">Time (ms, lower is better)</text>
+
+  <!-- Chart area: x=70..690, y=75..340 -->
+  <!-- Grid lines -->
+  <line x1="70" y1="340" x2="690" y2="340" stroke="#30363d" stroke-width="1"/>
+  <line x1="70" y1="274" x2="690" y2="274" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="208" x2="690" y2="208" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="142" x2="690" y2="142" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="75" x2="690" y2="75" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+
+  <!-- Y axis labels (0, 250, 500, 750, 1000) -->
+  <text x="62" y="344" text-anchor="end" fill="#8b949e" font-size="10">0</text>
+  <text x="62" y="278" text-anchor="end" fill="#8b949e" font-size="10">250</text>
+  <text x="62" y="212" text-anchor="end" fill="#8b949e" font-size="10">500</text>
+  <text x="62" y="146" text-anchor="end" fill="#8b949e" font-size="10">750</text>
+  <text x="62" y="80" text-anchor="end" fill="#8b949e" font-size="10">1000</text>
+
+  <!-- Scale: 1000ms = 265px, so 1ms = 0.265px -->
+  <!-- Bars: 6 groups (k=16..21), each group has CPU + GPU bar -->
+  <!-- Group width = 90px, bar width = 35px, gap = 10px -->
+  <!-- Group centers at x = 120, 220, 320, 420, 520, 620 -->
+
+  <!-- k=16: CPU=47.7 GPU=44.9 -->
+  <rect x="95" y="327.4" width="35" height="12.6" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="135" y="328.1" width="35" height="11.9" rx="3" fill="url(#gpuGrad)"/>
+  <text x="120" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=16</text>
+  <text x="120" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.06x</text>
+
+  <!-- k=17: CPU=81.3 GPU=72.2 -->
+  <rect x="195" y="318.5" width="35" height="21.5" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="235" y="320.9" width="35" height="19.1" rx="3" fill="url(#gpuGrad)"/>
+  <text x="220" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=17</text>
+  <text x="220" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.12x</text>
+
+  <!-- k=18: CPU=152.8 GPU=117.5 -->
+  <rect x="295" y="299.5" width="35" height="40.5" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="335" y="308.9" width="35" height="31.1" rx="3" fill="url(#gpuGrad)"/>
+  <text x="320" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=18</text>
+  <text x="320" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.30x</text>
+
+  <!-- k=19: CPU=289.6 GPU=218.4 — PEAK -->
+  <rect x="395" y="263.3" width="35" height="76.7" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="435" y="282.1" width="35" height="57.9" rx="3" fill="url(#gpuGrad)"/>
+  <text x="420" y="358" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="700">k=19</text>
+  <text x="420" y="372" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">1.33x</text>
+  <!-- Peak marker -->
+  <text x="420" y="255" text-anchor="middle" fill="#3fb950" font-size="9">PEAK</text>
+
+  <!-- k=20: CPU=491.4 GPU=417.0 -->
+  <rect x="495" y="209.8" width="35" height="130.2" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="535" y="229.5" width="35" height="110.5" rx="3" fill="url(#gpuGrad)"/>
+  <text x="520" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=20</text>
+  <text x="520" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.18x</text>
+
+  <!-- k=21: CPU=933.0 GPU=900.2 -->
+  <rect x="595" y="92.6" width="35" height="247.4" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="635" y="101.4" width="35" height="238.6" rx="3" fill="url(#gpuGrad)"/>
+  <text x="620" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=21</text>
+  <text x="620" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.04x</text>
+
+  <!-- Legend -->
+  <rect x="260" y="388" width="14" height="8" rx="2" fill="#8b949e"/>
+  <text x="280" y="396" fill="#8b949e" font-size="10">CPU (halo2curves, 32T)</text>
+  <rect x="420" y="388" width="14" height="8" rx="2" fill="#58a6ff"/>
+  <text x="440" y="396" fill="#58a6ff" font-size="10">GPU (pallas-gpu-msm, RTX 3090)</text>
+</svg>

@@ -1,0 +1,8 @@
+pallas-gpu-msm
+Copyright 2026 Zhaohui (Geoffrey) Wang
+
+This product includes prebuilt CUDA kernel libraries (prebuilt/*.a)
+provided in compiled binary form. The kernel source code is not
+included in this distribution.
+
+Contact: zhaohui.geoffrey.wang@gmail.com

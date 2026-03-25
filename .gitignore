@@ -1,0 +1,28 @@
+/target
+Cargo.lock
+
+# CUDA source — NEVER commit
+*.cu
+*.cuh
+*.ptx
+
+# Research / optimization documents — NEVER commit
+OPTIMIZATION_NOTES*
+BENCHMARK_RESULTS*
+*_NOTES.md
+*_LOG.md
+*_DIARY.md
+*_RESEARCH.md
+
+# Build intermediates
+*.o
+*.a.tmp
+
+# Promo / social media drafts
+/promo/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
