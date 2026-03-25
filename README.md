@@ -173,7 +173,7 @@ In ChainProve, a single GPT-2 MLP layer (d=768, k=17) proves in ~6.3s on CPU. Wi
 
 ## Requirements
 
-- **NVIDIA GPU**: compute capability >= 8.6 (RTX 3090, RTX 4090, A100, H100, etc.)
+- **NVIDIA GPU**: compute capability >= 7.5 (T4, RTX 3090, A100, RTX 4090, H100, etc.)
 - **CUDA Runtime**: `libcudart` (comes with NVIDIA driver)
 - **Rust**: 1.70+
 
@@ -181,7 +181,9 @@ In ChainProve, a single GPT-2 MLP layer (d=768, k=17) proves in ~6.3s on CPU. Wi
 
 | Architecture | GPUs | Prebuilt |
 |-------------|------|----------|
-| sm_86 (Ampere) | RTX 3090, A6000, A100 | Yes |
+| sm_75 (Turing) | T4, RTX 2080 Ti | Yes |
+| sm_80 (Ampere) | A100, A30 | Yes |
+| sm_86 (Ampere) | RTX 3090, A6000 | Yes |
 | sm_89 (Ada) | RTX 4090, L40 | Yes |
 | sm_90 (Hopper) | H100, H200 | Yes |
 

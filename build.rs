@@ -60,12 +60,17 @@ fn detect_gpu_arch() -> Option<String> {
 
     // Map compute capability to sm_ string
     let sm = match cap.as_str() {
+        "7.5" => "sm_75",
+        "8.0" => "sm_80",
         "8.6" => "sm_86",
         "8.9" => "sm_89",
         "9.0" => "sm_90",
         _ => {
-            // Find closest match
-            if cap.starts_with("8.") {
+            if cap.starts_with("7.") {
+                "sm_75"
+            } else if cap.starts_with("8.0") || cap.starts_with("8.7") {
+                "sm_80"
+            } else if cap.starts_with("8.") {
                 "sm_86"
             } else if cap.starts_with("9.") {
                 "sm_90"
