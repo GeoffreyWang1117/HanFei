@@ -18,7 +18,8 @@ BENCHMARK_RESULTS*
 *.o
 *.a.tmp
 
-# Promo / social media drafts
+# Internal docs — NEVER commit
+/.github/
 /promo/
 
 # Editor / IDE
