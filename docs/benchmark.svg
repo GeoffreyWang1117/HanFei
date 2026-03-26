@@ -10,62 +10,63 @@
     </linearGradient>
   </defs>
   <rect width="720" height="400" rx="12" fill="#0d1117"/>
-  <text x="360" y="35" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="700">HanFei v0.1.1 — GPU vs CPU (RTX 3090 vs Ryzen 5950X 32T)</text>
-  <text x="360" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Best-of-N runs, all results bit-exact. No competing GPU implementation exists for Pallas.</text>
-  <text x="18" y="220" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,18,220)">Time (ms, lower is better)</text>
+  <text x="360" y="32" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">hanfei-shu v0.2.0 — GPU vs CPU Pippenger (RTX 3090)</text>
+  <text x="360" y="52" text-anchor="middle" fill="#8b949e" font-size="11">Best-of-N runs, all results bit-exact. Installed from crates.io.</text>
+  <text x="18" y="215" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,18,215)">Time (ms, lower is better)</text>
 
-  <!-- Chart area: x=70..690, y=75..340. Scale: 1000ms = 265px -->
+  <!-- Y axis: 0..7000ms, chart y=70..340, scale: 7000ms=270px → 1ms=0.0386px -->
   <line x1="70" y1="340" x2="690" y2="340" stroke="#30363d" stroke-width="1"/>
-  <line x1="70" y1="274" x2="690" y2="274" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
-  <line x1="70" y1="208" x2="690" y2="208" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
-  <line x1="70" y1="142" x2="690" y2="142" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
-  <line x1="70" y1="75" x2="690" y2="75" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="301" x2="690" y2="301" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="262" x2="690" y2="262" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="224" x2="690" y2="224" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="185" x2="690" y2="185" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="147" x2="690" y2="147" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="108" x2="690" y2="108" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
+  <line x1="70" y1="70" x2="690" y2="70" stroke="#21262d" stroke-width="0.5" stroke-dasharray="4"/>
   <text x="62" y="344" text-anchor="end" fill="#8b949e" font-size="10">0</text>
-  <text x="62" y="278" text-anchor="end" fill="#8b949e" font-size="10">250</text>
-  <text x="62" y="212" text-anchor="end" fill="#8b949e" font-size="10">500</text>
-  <text x="62" y="146" text-anchor="end" fill="#8b949e" font-size="10">750</text>
-  <text x="62" y="80" text-anchor="end" fill="#8b949e" font-size="10">1000</text>
+  <text x="62" y="305" text-anchor="end" fill="#8b949e" font-size="10">1000</text>
+  <text x="62" y="266" text-anchor="end" fill="#8b949e" font-size="10">2000</text>
+  <text x="62" y="228" text-anchor="end" fill="#8b949e" font-size="10">3000</text>
+  <text x="62" y="189" text-anchor="end" fill="#8b949e" font-size="10">4000</text>
+  <text x="62" y="151" text-anchor="end" fill="#8b949e" font-size="10">5000</text>
+  <text x="62" y="112" text-anchor="end" fill="#8b949e" font-size="10">6000</text>
+  <text x="62" y="74" text-anchor="end" fill="#8b949e" font-size="10">7000</text>
 
-  <!-- k=16: CPU=47.6 GPU=35.9 -->
-  <rect x="95" y="327.4" width="35" height="12.6" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="135" y="330.5" width="35" height="9.5" rx="3" fill="url(#gpuGrad)"/>
-  <text x="120" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=16</text>
-  <text x="120" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.33x</text>
+  <!-- scale: 1ms = 270/7000 = 0.0386 px -->
+  <!-- k=16: Pip=516, GPU=110 -->
+  <rect x="115" y="320.1" width="35" height="19.9" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="155" y="335.8" width="35" height="4.2" rx="2" fill="url(#gpuGrad)"/>
+  <text x="140" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=16</text>
+  <text x="140" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">4.71x</text>
 
-  <!-- k=17: CPU=85.1 GPU=58.7 -->
-  <rect x="195" y="317.4" width="35" height="22.6" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="235" y="324.4" width="35" height="15.6" rx="3" fill="url(#gpuGrad)"/>
-  <text x="220" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=17</text>
-  <text x="220" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.45x</text>
+  <!-- k=17: Pip=961, GPU=202 -->
+  <rect x="225" y="302.9" width="35" height="37.1" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="265" y="332.2" width="35" height="7.8" rx="2" fill="url(#gpuGrad)"/>
+  <text x="250" y="358" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="700">k=17</text>
+  <text x="250" y="372" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">4.75x</text>
+  <text x="250" y="296" text-anchor="middle" fill="#3fb950" font-size="9">PEAK</text>
 
-  <!-- k=18: CPU=154.6 GPU=110.7 -->
-  <rect x="295" y="299.0" width="35" height="41.0" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="335" y="310.7" width="35" height="29.3" rx="3" fill="url(#gpuGrad)"/>
-  <text x="320" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=18</text>
-  <text x="320" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.40x</text>
+  <!-- k=18: Pip=1780, GPU=386 -->
+  <rect x="335" y="271.3" width="35" height="68.7" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="375" y="325.1" width="35" height="14.9" rx="3" fill="url(#gpuGrad)"/>
+  <text x="360" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=18</text>
+  <text x="360" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">4.61x</text>
 
-  <!-- k=19: CPU=298.5 GPU=175.2 — PEAK -->
-  <rect x="395" y="260.9" width="35" height="79.1" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="435" y="293.6" width="35" height="46.4" rx="3" fill="url(#gpuGrad)"/>
-  <text x="420" y="358" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="700">k=19</text>
-  <text x="420" y="372" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">1.70x</text>
-  <text x="420" y="253" text-anchor="middle" fill="#3fb950" font-size="9">PEAK</text>
+  <!-- k=19: Pip=3453, GPU=1043 -->
+  <rect x="445" y="206.7" width="35" height="133.3" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="485" y="299.7" width="35" height="40.3" rx="3" fill="url(#gpuGrad)"/>
+  <text x="470" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=19</text>
+  <text x="470" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">3.31x</text>
 
-  <!-- k=20: CPU=527.7 GPU=351.7 -->
-  <rect x="495" y="200.2" width="35" height="139.8" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="535" y="246.8" width="35" height="93.2" rx="3" fill="url(#gpuGrad)"/>
-  <text x="520" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=20</text>
-  <text x="520" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.50x</text>
-
-  <!-- k=21: CPU=975.5 GPU=740.1 -->
-  <rect x="595" y="81.5" width="35" height="258.5" rx="3" fill="url(#cpuGrad)"/>
-  <rect x="635" y="143.9" width="35" height="196.1" rx="3" fill="url(#gpuGrad)"/>
-  <text x="620" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=21</text>
-  <text x="620" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">1.32x</text>
+  <!-- k=20: Pip=6744, GPU=1776 -->
+  <rect x="555" y="79.7" width="35" height="260.3" rx="3" fill="url(#cpuGrad)"/>
+  <rect x="595" y="271.4" width="35" height="68.6" rx="3" fill="url(#gpuGrad)"/>
+  <text x="580" y="358" text-anchor="middle" fill="#8b949e" font-size="11">k=20</text>
+  <text x="580" y="372" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">3.80x</text>
 
   <!-- Legend -->
-  <rect x="260" y="388" width="14" height="8" rx="2" fill="#8b949e"/>
-  <text x="280" y="396" fill="#8b949e" font-size="10">CPU (halo2curves, 32T)</text>
-  <rect x="420" y="388" width="14" height="8" rx="2" fill="#58a6ff"/>
-  <text x="440" y="396" fill="#58a6ff" font-size="10">GPU (HanFei, RTX 3090)</text>
+  <rect x="230" y="388" width="14" height="8" rx="2" fill="#8b949e"/>
+  <text x="250" y="396" fill="#8b949e" font-size="10">CPU Pippenger (single-threaded)</text>
+  <rect x="440" y="388" width="14" height="8" rx="2" fill="#58a6ff"/>
+  <text x="460" y="396" fill="#58a6ff" font-size="10">GPU (hanfei-shu v0.2.0, RTX 3090)</text>
 </svg>

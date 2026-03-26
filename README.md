@@ -38,15 +38,19 @@ MSM is basically a giant dot product on elliptic curve points. It takes 60-70% o
 
 ## How much faster?
 
-Tested on RTX 3090 vs Ryzen 9 5950X (32 threads):
+Tested on RTX 3090, installed from crates.io (`cargo add hanfei-shu`):
 
 | Points | CPU Pippenger | GPU (this crate) | Speedup |
 |--------|--------------|-------------------|---------|
-| 64K | 538ms | 115ms | **4.7x** |
-| 128K | 1008ms | 205ms | **4.9x** |
-| 256K | 1806ms | 398ms | **4.5x** |
+| 64K (k=16) | 516ms | 110ms | **4.7x** |
+| 128K (k=17) | 961ms | 202ms | **4.8x** |
+| 256K (k=18) | 1780ms | 386ms | **4.6x** |
+| 512K (k=19) | 3453ms | 1043ms | **3.3x** |
+| 1M (k=20) | 6744ms | 1776ms | **3.8x** |
 
 Every result is **bit-exact** — the GPU produces the same answer as the CPU, down to the last bit. This matters for cryptography.
+
+CPU baseline: `hanfei_shu::cpu::pippenger_msm` (included in crate, single-threaded).
 
 ## "But where's the GPU code?"
 
@@ -235,13 +239,15 @@ Contact: **zhaohui.geoffrey.wang@gmail.com**
 
 ### 快多少？
 
-RTX 3090 vs CPU Pippenger：
+RTX 3090 vs CPU Pippenger（v0.2.0, from crates.io）：
 
 | 规模 | CPU | GPU | 加速 |
 |------|-----|-----|------|
-| 64K | 538ms | 115ms | **4.7x** |
-| 128K | 1008ms | 205ms | **4.9x** |
-| 256K | 1806ms | 398ms | **4.5x** |
+| 64K (k=16) | 516ms | 110ms | **4.7x** |
+| 128K (k=17) | 961ms | 202ms | **4.8x** |
+| 256K (k=18) | 1780ms | 386ms | **4.6x** |
+| 512K (k=19) | 3453ms | 1043ms | **3.3x** |
+| 1M (k=20) | 6744ms | 1776ms | **3.8x** |
 
 所有结果 **逐位精确一致**。
 

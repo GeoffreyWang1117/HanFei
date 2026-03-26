@@ -54,14 +54,16 @@
 
 <h2>How much faster?</h2>
 
-<p>RTX 3090 vs CPU Pippenger (single-threaded):</p>
+<p>RTX 3090 vs CPU Pippenger — v0.2.0 installed from crates.io:</p>
 
 <table>
 <thead><tr><th>Points</th><th>CPU</th><th>GPU</th><th>Speedup</th></tr></thead>
 <tbody>
-<tr><td>64K</td><td>538ms</td><td>115ms</td><td class="speedup">4.7x</td></tr>
-<tr><td>128K</td><td>1008ms</td><td>205ms</td><td class="speedup">4.9x</td></tr>
-<tr><td>256K</td><td>1806ms</td><td>398ms</td><td class="speedup">4.5x</td></tr>
+<tr><td>64K (k=16)</td><td>516ms</td><td>110ms</td><td class="speedup">4.7x</td></tr>
+<tr><td>128K (k=17)</td><td>961ms</td><td>202ms</td><td class="speedup">4.8x</td></tr>
+<tr><td>256K (k=18)</td><td>1780ms</td><td>386ms</td><td class="speedup">4.6x</td></tr>
+<tr><td>512K (k=19)</td><td>3453ms</td><td>1043ms</td><td class="speedup">3.3x</td></tr>
+<tr><td>1M (k=20)</td><td>6744ms</td><td>1776ms</td><td class="speedup">3.8x</td></tr>
 </tbody>
 </table>
 
