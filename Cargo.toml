@@ -1,6 +1,6 @@
 [package]
 name = "hanfei-shu"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 description = "术 — GPU-accelerated Multi-Scalar Multiplication for the Pallas elliptic curve. The first and only GPU MSM for the Halo2/Pasta ecosystem."
 license = "Apache-2.0"
