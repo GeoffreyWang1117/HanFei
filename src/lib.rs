@@ -3,8 +3,7 @@
 //! Public API uses `pasta_curves` types for compatibility with
 //! the halo2_proofs fork. Internally calls CUDA kernels via C FFI.
 
-use ff::PrimeField;
-use group::{Curve, Group, GroupEncoding};
+use group::Group;
 use pasta_curves::arithmetic::CurveAffine;
 use pasta_curves::pallas;
 use rayon::prelude::*;
@@ -101,14 +100,13 @@ pub fn cpu_best_multiexp(coeffs: &[Scalar], bases: &[Affine]) -> Point {
 fn gpu_msm_dispatch(coeffs: &[Scalar], bases: &[Affine]) -> Result<Point, String> {
     let n = coeffs.len();
 
-    // Pass raw Montgomery-form scalars to GPU.
-    // GPU kernel converts Montgomery→standard on-device (eliminates CPU to_repr overhead).
-    let scalar_bytes: Vec<u8> = unsafe {
-        std::slice::from_raw_parts(
-            coeffs.as_ptr() as *const u8,
-            n * 32,
-        ).to_vec()
-    };
+    // Pack scalars: to_repr() converts Montgomery→standard form.
+    // GPU NAF precompute reads standard-form integer bits for window extraction.
+    use ff::PrimeField;
+    let mut scalar_bytes = vec![0u8; n * 32];
+    scalar_bytes.par_chunks_mut(32).zip(coeffs.par_iter()).for_each(|(chunk, s)| {
+        chunk.copy_from_slice(s.to_repr().as_ref());
+    });
 
     // Pack bases: raw Montgomery limbs into GPU layout. Parallelized.
     const GPU_AFFINE_SIZE: usize = 96;

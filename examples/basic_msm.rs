@@ -1,8 +1,7 @@
-use group::Curve;
-//! Basic example: compute an MSM on the Pallas curve using GPU acceleration.
+// Basic example: compute an MSM on the Pallas curve using GPU acceleration.
 
 use ff::Field;
-use group::{Group};
+use group::{Curve, Group};
 use pasta_curves::pallas;
 use hanfei_shu::{gpu_best_multiexp, is_gpu_available};
 use rand_core::OsRng;

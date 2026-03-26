@@ -1,11 +1,10 @@
-use group::Curve;
-//! Official benchmark for comparison with nanoZkinference/ChainProve results.
-//!
-//! Outputs JSON compatible with experiments/results/proof/gpu_msm_final.json
-//! Run with: cargo run --release --example official_benchmark
+// Official benchmark for comparison with nanoZkinference/ChainProve results.
+//
+// Outputs JSON compatible with experiments/results/proof/gpu_msm_final.json
+// Run with: cargo run --release --example official_benchmark
 
 use ff::Field;
-use group::{Group};
+use group::{Curve, Group};
 use pasta_curves::pallas;
 use hanfei_shu::{gpu_best_multiexp, is_gpu_available};
 use rand_core::OsRng;

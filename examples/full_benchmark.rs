@@ -1,10 +1,9 @@
-use group::Curve;
-//! Comprehensive benchmark: GPU vs CPU MSM across multiple input sizes.
-//!
-//! Run with: cargo run --release --example full_benchmark
+// Comprehensive benchmark: GPU vs CPU MSM across multiple input sizes.
+//
+// Run with: cargo run --release --example full_benchmark
 
 use ff::Field;
-use group::{Group};
+use group::{Curve, Group};
 use pasta_curves::pallas;
 use hanfei_shu::{gpu_best_multiexp, is_gpu_available};
 use rand_core::OsRng;
