@@ -10,7 +10,7 @@
     </linearGradient>
   </defs>
   <rect width="720" height="400" rx="12" fill="#0d1117"/>
-  <text x="360" y="32" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">hanfei-shu v0.2.0 — GPU vs CPU Pippenger (RTX 3090)</text>
+  <text x="360" y="32" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">hanfei-shu v0.2.1 — GPU (RTX 3090) vs CPU Pippenger (Zen3 5950X)</text>
   <text x="360" y="52" text-anchor="middle" fill="#8b949e" font-size="11">Best-of-N runs, all results bit-exact. Installed from crates.io.</text>
   <text x="18" y="215" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,18,215)">Time (ms, lower is better)</text>
 
@@ -68,5 +68,5 @@
   <rect x="230" y="388" width="14" height="8" rx="2" fill="#8b949e"/>
   <text x="250" y="396" fill="#8b949e" font-size="10">CPU Pippenger (Ryzen 9 5950X, 1 thread)</text>
   <rect x="440" y="388" width="14" height="8" rx="2" fill="#58a6ff"/>
-  <text x="460" y="396" fill="#58a6ff" font-size="10">GPU (hanfei-shu v0.2.0, RTX 3090)</text>
+  <text x="460" y="396" fill="#58a6ff" font-size="10">GPU (RTX 3090, single card)</text>
 </svg>

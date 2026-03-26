@@ -40,7 +40,7 @@ MSM is basically a giant dot product on elliptic curve points. It takes 60-70% o
 
 Tested on RTX 3090 vs Ryzen 9 5950X, installed from crates.io (`cargo add hanfei-shu`):
 
-| Points | CPU Pippenger (5950X, 1T) | GPU (RTX 3090) | Speedup |
+| Points | CPU Pippenger (5950X, single-thread) | GPU (RTX 3090, single card) | Speedup |
 |--------|--------------------------|----------------|---------|
 | 64K (k=16) | 516ms | 110ms | **4.7x** |
 | 128K (k=17) | 961ms | 202ms | **4.8x** |
